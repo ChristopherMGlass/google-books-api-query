@@ -1,0 +1,16 @@
+- search for books
+    /volumes?
+        * intitle
+        * inauthor
+        * inpublisher
+        * subject
+        * isbn
+        * lccn
+        * oclc
+
+- display book object
+    * author
+    * title
+    * publisher
+    * book image
+    * link to more info

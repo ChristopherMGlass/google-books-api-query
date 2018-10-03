@@ -1,0 +1,38 @@
+
+.book_text_input{
+    display:inline-block;
+    width: 250px;
+    margin:auto
+}
+
+.book_label{
+    padding: 5px 0;
+    text-align: left;
+    display:block;
+    min-width: 150px;
+    width:250px;
+}
+
+.volumeImage{
+    height:190px;
+}
+
+body{
+    width:80%;
+    margin:auto;
+}
+.advanced{
+    padding:20px;
+}
+.searchAgain{
+    margin:5px;
+    font-size: 14pt;
+}
+.volumeAuthors{
+    margin:0px;
+    padding: 0px
+}
+.volume{
+    margin:10px;
+    overflow: hidden;
+}

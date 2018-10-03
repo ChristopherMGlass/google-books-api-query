@@ -1,0 +1,46 @@
+.galleryItem{
+    float:left;
+    width: 250px;
+    height: 400px;
+}
+.itemWrapper{
+    padding: 10px;
+    width: 75%;
+    margin: auto;
+    display:block;
+}
+.link-like{
+    margin:5px;
+   /*optional*/
+    color:#069;
+    text-decoration:underline;
+    cursor:pointer;
+}
+.btn{
+margin:5px;
+}
+.main_content{
+display:block;
+margin:auto;
+width: 33%;
+}
+
+.title{
+    width: 40%;
+    margin:auto;
+    padding:10px;
+}
+
+.pageLinks{
+    display: inline-block;
+    margin: 20px 33%;
+}
+
+page_link{
+    padding:2px;
+    width:1.5em;
+}
+
+page_btn{
+    margin:2px;
+}

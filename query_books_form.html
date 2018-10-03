@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="books_api.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="gallery.css" />
+    <script src="./formutils.js"></script>
+    <!-- <script src="./displayItems.js"></script> -->
+</head>
+
+<body>
+    <h2 class="title">  Search Books through Google Books API</h2>
+    <form id="query_form" class="main_content">
+        <div class="standard_wrrapper">
+            <input name="query" class="book_text_input" type="text" />
+            <!-- Google Branding Requirement-->
+            <a href="https://www.google.com">
+                <img src="https://books.google.com/googlebooks/images/poweredby.png" border="0" width="62" height="30"
+                    align="absbottom" style="position: relative; top: 6px; margin:0; border: 0; padding: 0; padding-left: 8px"></a>
+            <!-- end Google Branding Requirement-->
+        </div>
+        <div class="advanced_wrapper">
+            <span class="link-like" a id="advanced search"  href=""  onclick="
+                show('advanced');
+                hide('advanced search');
+                show('standard_search')">
+
+                advanced search</span>
+            <span class="link-like"a id="standard_search"  href="" style="display:none" onclick="
+                hide('advanced');
+                hide('standard_search');
+                show('advanced search')">standard
+                search</span>
+            <div id="advanced" style="display:none" class="advanced">
+
+                <label class="book_label" for="inauthor">in authors</label>
+                <input class="book_text_input" name="inauthor" type="text" />
+
+                <label class="book_label" for="intitle">in title</label>
+                <input class="book_text_input" name="intitle" type="text" />
+
+                <label class="book_label" for="inpublisher">in publisher</label>
+                <input class="book_text_input" name="inpublisher" type="text" />
+
+                <label class="book_label" for="subject">subject</label>
+                <input class="book_text_input" name="subject" type="text" />
+
+                <label class="book_label" for="isbn">ISBN</label>
+                <input class="book_text_input" name="isbn" type="text" />
+
+                <label class="book_label" for="lccn">LCCN</label>
+                <input class="book_text_input" name="lccn" type="text" />
+
+                <label class="book_label" for="oclc">OCLC</label>
+                <input class="book_text_input" name="oclc" type="text" />
+
+                <div class="book_radio_wrapper">
+                    <legend>Publication Type:</legend>
+                    <input class="book_radio_input" type="radio" id="magazines" name="printType" value="magazines" />
+                    <label for="magazines">magazines</label>
+                    <input class="book_radio_input" type="radio" id="books" name="printType" value="books" />
+                    <label for="books">books</label>
+                    <input class="book_radio_input" type="radio" id="both" name="printType" value="all" />
+                    <label for="both">both</label>
+                </div>
+                <div class="book_radio_wrapper">
+                    <legend>Sort Results By:</legend>
+                    <input class="book_radio_input" type="radio" id="relevance" name="orderBy" value="relevance" />
+                    <label for="relevance">relevance</label>
+                    <input class="book_radio_input" type="radio" id="newest" name="orderBy" value="newest" />
+                    <label for="newest">newest</label>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn" id="query_btn" onclick="
+            formDataToObject('query_form');
+            show('volume_gallery');" >
+            Search Books
+        </button>
+    </form>
+
+    <div class="gallery" id="volume_gallery">
+
+    </div>
+</body>
+<script src="main.js" type="module"></script>
+<script src="gallery.js" type="module"></script>
+
+</html>
