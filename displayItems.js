@@ -48,6 +48,9 @@ export function displayResults(results){
         gallery.innerHTML= "<div class=\"empty results\">NO BOOKS FOUND</div>"
         return
     }
+    //hide spinner
+    var elem =  document.getElementById("spinner")
+    elem.style.display="none"
     handleVolumes(volumesList)
     // results.items.forEach(function(volume){
     //     galleryHtml+=displayVolume(volume)

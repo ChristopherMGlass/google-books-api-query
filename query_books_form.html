@@ -78,9 +78,11 @@
         </div>
         <button type="button" class="btn" id="query_btn" onclick="
             formDataToObject('query_form');
-            show('volume_gallery');" >
+            show('volume_gallery');
+            show('spinner') " >
             Search Books
         </button>
+        <div id="spinner" style="display:none">Please wait, large query results can take a minute or two load <span class="Loader"></span></div>
     </form>
 
     <div class="gallery" id="volume_gallery">
