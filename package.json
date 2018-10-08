@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register **.test.js"
+    "test": "mocha --compilers js:babel-core/register **.test.js",
+    "start":"node server"
   },
   "author": "Chris Glass",
   "license": "ISC",
