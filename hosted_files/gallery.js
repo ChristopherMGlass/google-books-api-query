@@ -1,9 +1,15 @@
 const PAGE_SEPARATOR = "..."
 
+/**
+ * builds a structure of the page navigation
+ * @param {*} total - total number of items
+ * @param {*} idx - the page index currenty displayed
+ * @param {*} perpage - the number of items perpage
+ */
 function get_pages(total, idx, perpage) {
     let numPages = Math.ceil(total / perpage)
     let display = []
-    console.log("getting pages", total, idx, perpage)
+    console.debug("getting pages", total, idx, perpage)
     if (numPages > 10) {
         if (index > (numPages - 3)) {
             display.push(1)
@@ -43,13 +49,14 @@ function get_pages(total, idx, perpage) {
     return display
 }
 
+//builds the page link html from the display structure
 function page_links(display, idx) { //throws type error
 
     let pagehtml = "<div class=\"pageLinks\"> "
     if (idx > 1) {
         pagehtml += "<button id='prev_page' class=\"page_btn\" > \< prev page </button>"
     }
-    console.log("display", display, idx, pagehtml)
+    console.debug("display", display, idx, pagehtml)
     if (display.length > 1 && display.length < 3) {
         pagehtml += "<button id='next_page' class=\"page_btn\" >next page ></button></div>"
         return pagehtml
@@ -68,15 +75,23 @@ function page_links(display, idx) { //throws type error
     return pagehtml
 }
 
+/**
+ * displays the items in the galler
+ * @param {} items - items to display
+ * @param {*} size - size of the item structure
+ * @param {*} idx - current page index
+ * @param {*} perpage - items perpage
+ * @param {*} displayHandler - callback to render the item
+ */
 function display_items(items, size, idx, perpage, displayHandler) {
     let numberOfItems = size || items.length
     let displayWrapper = "<div class=\"itemWraper\">"
     let displayHtml = displayWrapper
-    let base=(idx-1)*perpage
+    let base = (idx - 1) * perpage
     let numPages = Math.ceil(numberOfItems / perpage)
-    
-    for (let i = 0; i < perpage  && i+base<numberOfItems ; i++) {
-        displayHtml += displayHandler(items[base+i])
+
+    for (let i = 0; i < perpage && i + base < numberOfItems; i++) {
+        displayHtml += displayHandler(items[base + i])
 
     }
     displayHtml += "</div>" //close itemwrapper
@@ -84,6 +99,11 @@ function display_items(items, size, idx, perpage, displayHandler) {
     return displayHtml
 }
 
+
+/**
+ * navigate to specified page
+ * @param pageNum - the page index to navigate to
+ */
 export function gotopage(pageNum) {
     console.debug("goto num", pageNum)
     pageNum = +pageNum //ensure it is of type number
@@ -91,20 +111,26 @@ export function gotopage(pageNum) {
     renderGallery()
 }
 
+//go to nex page index
 export function nextpage() {
     gotopage(window.index + 1)
 }
 
+//go to previous page index
 export function prevpage() {
     gotopage(window.index - 1)
 }
 
-//idx support for multiple galleries in the future
-export function renderGallery(galleryidx = 0) {
-    let gallery = window.galleries[galleryidx]
-    let elementID = gallery.element || "item_gallery_" + galleryidx
+/**
+ * renders the gallery and adds required listeners
+ */
+export function renderGallery() {
+    let gallery = window.gallery
+    let elementID = gallery.element || "item_gallery"
     let galleryElement = document.getElementById(elementID)
-    console.log("gallery", gallery, window.index)
+    galleryElement.innerHTML = ""
+
+    console.debug("gallery", gallery, window.index)
     galleryElement.innerHTML = display_items(gallery.items, null, window.index, gallery.perpage, gallery.displayHandler)
 
     let nextPage = document.getElementById("next_page")
@@ -118,7 +144,15 @@ export function renderGallery(galleryidx = 0) {
     }
 }
 
+/**
+ * initilazes the gallery object
+ * @param items - the items to rendfer in teh galery
+ * @param itemsPerPage - the number of items to display on the page
+ * @param displayHandler - the callback to display an item
+ * @param elementID {O} - an optional gallery HTML element id
+ * */
 export function initGallery(items, itemsPerPage, displayHandler, elementID = null) {
+
     let gallery = {
         items: items,
         perpage: itemsPerPage,
@@ -128,6 +162,5 @@ export function initGallery(items, itemsPerPage, displayHandler, elementID = nul
         gallery.element = elementID
     }
     window.index = 1
-    window.galleries = window.galleries || []
-    window.galleries.push(gallery)
+    window.gallery = gallery
 }

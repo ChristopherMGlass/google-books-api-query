@@ -2,14 +2,21 @@ import { renderGallery, initGallery } from "./gallery.js";
 
 const DEFAULT_IMG="./Not Found.png"
 
-
+/**
+ *  handles the rendering of a list of volumes from teh API query
+ * @param volumeResult - the list of volumes retrived from Google
+ *
+  */
 function handleVolumes(volumeResult) {
     initGallery(volumeResult, 20, displayVolume, "volume_gallery")
     renderGallery()
 }
 
 
-
+/**
+ * displays and individual volume
+ * @param {} volume - the volume to display
+ */
 let displayVolume=function(volume) {
     console.debug("displaying volume:",volume)
 
@@ -36,9 +43,11 @@ let displayVolume=function(volume) {
     return volumeHtml
 }
 
+/**
+ * displays results of query
+ * @param {*} results 
+ */
 export function displayResults(results){
-    // let gallery= document.getElementById("volume_gallery")
-    // let galleryHtml=""
     let volumesList=results.items || []
     if(!volumesList instanceof Array){
         console.error("volumesList is not an array is", typeof volumesList)
@@ -48,12 +57,8 @@ export function displayResults(results){
         gallery.innerHTML= "<div class=\"empty results\">NO BOOKS FOUND</div>"
         return
     }
-    //hide spinner
+    //hide spinner - DOES 
     var elem =  document.getElementById("spinner")
     elem.style.display="none"
     handleVolumes(volumesList)
-    // results.items.forEach(function(volume){
-    //     galleryHtml+=displayVolume(volume)
-    // })
-    // gallery.innerHTML=galleryHtml
 }

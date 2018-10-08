@@ -1,8 +1,8 @@
 const API_URL = "https://www.googleapis.com/books/v1"
 const VOLUMES_ENDPOINT = "/volumes"
 const API_KEY = "AIzaSyCkcpjnhGY39fd7rWQBAIUG3HOOM3KpdGU"
-const MAX_RESULTS =500
 
+//builds the query string(q) portion of the query
 function build_book_query_string(query) {
     const queryStart = "?q="
     let queryString = queryStart;
@@ -10,10 +10,8 @@ function build_book_query_string(query) {
     //builds from map key values
     for (let key in query) {
         if (key == "query") {
-            console.log(typeof query[key])
             queryString += query[key]
         } else {
-            console.log(typeof key)
             queryString += key + ":" + query[key] //TODO: may need to wrap in quotes if spaces
         }
         queryString += '+'
@@ -22,8 +20,13 @@ function build_book_query_string(query) {
     queryString = queryString.slice(0, -1);
     return queryString
 }
+/**
+ * builds the full querystring to add to the url to query the apy
+ * @param {*} fullQuery - the query structure used containing meta query options such as "orderBy"
+ * as well as the book query structure
+ */
 function buildfullquery(fullQuery) {
-    let queryString = build_book_query_string(fullQuery.bookQuery)
+    let queryString = build_book_query_string(fullQuery.bookQuery) // passes the book query to be parsed
     for (let key in fullQuery) {
         if (key !== "bookQuery") {
             queryString += "&"
@@ -37,24 +40,32 @@ function buildfullquery(fullQuery) {
     queryString += "&key=" + API_KEY;
     return queryString
 }
-
+/**
+ * calls the Google Books API with query until all results are retrieved
+ * @param {} fullQuery 
+ */
 export function query_api(fullQuery) {
-    // Initialize the HTTP request.
     let queryString = buildfullquery(fullQuery)
     let result = get_booksApi(queryString)
-    let nextItems=true 
-    while (nextItems &&result.totalItems > result.items.length ) {
+    let nextItems = true
+
+
+    //whlile results remain increase offset and call api
+    while (nextItems && result.items && result.totalItems > result.items.length) {
         fullQuery.startIndex = result.items.length
         queryString = buildfullquery(fullQuery)
-        nextItems=get_booksApi(queryString).items
-        if(nextItems &&nextItems.length){
-         result.items = result.items.concat(nextItems)
+        nextItems = get_booksApi(queryString).items
+        if (nextItems && nextItems.length) {
+            result.items = result.items.concat(nextItems)
         }
     }
     return result
 }
 
-
+/**
+ * calls google API with already built url query string
+ * @param {*} urlParamString - the complete url query string
+ */
 function get_booksApi(urlParamString) {
     let response = ""
     let xhr = new XMLHttpRequest();
