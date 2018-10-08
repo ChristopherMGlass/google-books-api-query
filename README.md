@@ -1,5 +1,7 @@
 # Query with Google Books API
 
+This is a website that displays a simple form to collect information from a user and uses that to query the Google Books API.  
+
 ## Design Stratgy used
 This implementation consists of a all client side solution hosted by a simple Node Express app.  The UI is designed to be "quick and dirty". Both decisions are inteded to keep the soution light waeight and simple. I elected not to utilize a UI framework like React primarily for simplicty.  If the UI was likely to get more complicated I would likley use React.
 
@@ -11,9 +13,9 @@ I have made note of multiple way performance can be improved, some are more like
 
 The usage is pretty simple. To start the application, on the desreid hosting server simply run 
 
-``node server.js [port number]`` 
+``node server.js [port]`` 
 
-This will begin hosting the service on the desired port.  Simply navigate to the hosting server on your bowser to load the page.
+Where ``port`` is optional and a random port will be assigned if omitted.  This will begin hosting the service on the desired port.  Simply navigate to the hosting server on your bowser to load the page.
 
 An example of this code is hosted is view able at
 

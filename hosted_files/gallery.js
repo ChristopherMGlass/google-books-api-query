@@ -73,7 +73,9 @@ function display_items(items, size, idx, perpage, displayHandler) {
     let displayWrapper = "<div class=\"itemWraper\">"
     let displayHtml = displayWrapper
     let base=(idx-1)*perpage
-    for (let i = 0; i < perpage  && base+1<numPages ; i++) {
+    let numPages = Math.ceil(numberOfItems / perpage)
+    
+    for (let i = 0; i < perpage  && i+base<numberOfItems ; i++) {
         displayHtml += displayHandler(items[base+i])
 
     }
