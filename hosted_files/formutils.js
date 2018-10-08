@@ -1,6 +1,13 @@
-
+/**
+ * series of utility functions for help with a HTML Form
+ */
 var builtFormValues={}
 
+/**
+ * grabs the from data without requiring submission of the form
+ * puts data into the  builtFormValues structure
+ * @param {string} id - the elment ID of the form
+ */
 function formDataToObject(id) {
     var form = document.getElementById(id)
     if (!form){
@@ -38,16 +45,29 @@ function formDataToObject(id) {
         }
     }
     builtFormValues=formValues
-    console.log("returning form values", formValues)
+    console.debug("returning form values", formValues)
     return formValues
 }
 
+/**
+ * displays element
+ * 
+ * @param id - element id to display
+ */
 function show(id){
+    console.debug("showing",id)
     var elem = document.getElementById(id)
-    elem.style.display=""
+    elem.style.display="block"
 
 }
+
+/**
+ * hides element
+ * 
+ * @param id - element id to hide
+ */
 function hide(id){
+    console.debug("hiding",id)
     var elem =  document.getElementById(id)
     elem.style.display="none"
 }

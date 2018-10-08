@@ -1,24 +1,18 @@
 import { query_api } from "./books_api.js";
 import { displayResults } from "./displayItems.js";
-import { gotopage, nextpage, prevpage } from "./gallery.js";
 
+//disable debug statements
+console.debug=function(){}
+/**
+ * get form input data stored globally to query google api
+ */
 export function query() {
-    //     let query = {
-    //         bookQuery:{
-    //             query: '"War of the Worlds"',
-    //             inauthoer: "Wells"
-    //         },
-    //         orderBy:"relevance",
-    //         maxResults:40
-    //     }
-    console.log("window", window.builtFormValues)
-    console.log("global", builtFormValues)
+    console.debug("querying...")
     let bookQuery = {}
     let query = {
         maxResults: 40
     }
     for (let key in builtFormValues) {
-
         if (!builtFormValues[key]) {
             continue;
         }

@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Query Books</title>
     <link rel="stylesheet" type="text/css" media="screen" href="books_api.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="gallery.css" />
     <script src="./formutils.js"></script>
@@ -13,7 +11,7 @@
 </head>
 
 <body>
-    <h2 class="title">  Search Books through Google Books API</h2>
+    <h2 class="title"> Search Books through Google Books API</h2>
     <form id="query_form" class="main_content">
         <div class="standard_wrrapper">
             <input name="query" class="book_text_input" type="text" />
@@ -24,13 +22,13 @@
             <!-- end Google Branding Requirement-->
         </div>
         <div class="advanced_wrapper">
-            <span class="link-like" a id="advanced search"  href=""  onclick="
+            <span class="link-like" a id="advanced search" href="" onclick="
                 show('advanced');
                 hide('advanced search');
                 show('standard_search')">
 
                 advanced search</span>
-            <span class="link-like"a id="standard_search"  href="" style="display:none" onclick="
+            <span class="link-like" a id="standard_search" href="" style="display:none" onclick="
                 hide('advanced');
                 hide('standard_search');
                 show('advanced search')">standard
@@ -77,10 +75,13 @@
             </div>
         </div>
         <button type="button" class="btn" id="query_btn" onclick="
+            show('spinner');
             formDataToObject('query_form');
-            show('volume_gallery');" >
+            show('volume_gallery')">
             Search Books
         </button>
+        <div id="spinner">Please wait, large query results can take a minute or two load <div class="loader">Loading...</div>
+        </div>
     </form>
 
     <div class="gallery" id="volume_gallery">
