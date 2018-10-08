@@ -9,7 +9,9 @@ expressApp.use('/', express.static(path.join(__dirname, 'hosted_files')))
 expressApp.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/hosted_files/index.html'));
 })
-let port = process.argv[2]
+
+//support for enviornments that require specifci port
+let port = process.argv[2] || process.env.PORT
 var server = http.createServer(expressApp)
 try {
     server.listen(port)
